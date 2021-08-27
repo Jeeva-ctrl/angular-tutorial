@@ -9,6 +9,7 @@ import { PowerBoosterComponent } from './Pipe-Custom/power-booster.component';
 import { ExponentialStrengthPipe } from './Pipe-Custom/exponential-strength.pipe';
 import { PowerBoostCalculatorComponent } from './Pipe-Custom/power-booster-calculator.component';
 import { HeroAsyncMessageComponent } from './Pipe-Custom/hero-async-message.component';
+import { AsyncObservablePipeComponent } from './Observable/aync-observable-component';
 
 @NgModule({
   imports: [BrowserModule, FormsModule],
@@ -19,7 +20,8 @@ import { HeroAsyncMessageComponent } from './Pipe-Custom/hero-async-message.comp
     PowerBoosterComponent,
     ExponentialStrengthPipe,
     PowerBoostCalculatorComponent,
-    HeroAsyncMessageComponent
+    HeroAsyncMessageComponent,
+    AsyncObservablePipeComponent
   ],
   bootstrap: [AppComponent]
 })

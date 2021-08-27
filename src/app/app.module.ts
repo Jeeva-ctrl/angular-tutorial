@@ -8,10 +8,19 @@ import { HeroBirthday2Component } from './happyBirthday.component';
 import { PowerBoosterComponent } from './Pipe-Custom/power-booster.component';
 import { ExponentialStrengthPipe } from './Pipe-Custom/exponential-strength.pipe';
 import { PowerBoostCalculatorComponent } from './Pipe-Custom/power-booster-calculator.component';
+import { HeroAsyncMessageComponent } from './Pipe-Custom/hero-async-message.component';
 
 @NgModule({
-  imports:      [ BrowserModule, FormsModule ],
-  declarations: [ AppComponent, HelloComponent,HeroBirthday2Component, PowerBoosterComponent, ExponentialStrengthPipe,PowerBoostCalculatorComponent],
-  bootstrap:    [ AppComponent ]
+  imports: [BrowserModule, FormsModule],
+  declarations: [
+    AppComponent,
+    HelloComponent,
+    HeroBirthday2Component,
+    PowerBoosterComponent,
+    ExponentialStrengthPipe,
+    PowerBoostCalculatorComponent,
+    HeroAsyncMessageComponent
+  ],
+  bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

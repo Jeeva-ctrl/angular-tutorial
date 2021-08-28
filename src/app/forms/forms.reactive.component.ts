@@ -21,7 +21,7 @@ Both reactive and template-driven forms are built on the following base classes.
 
   */
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-reactive-favorite-color',
@@ -51,26 +51,39 @@ import { FormControl, FormGroup } from '@angular/forms';
         <input id="zip" type="text" formControlName="zip" />
       </div>
       <button type="submit" [disabled]="!profileForm.valid">Submit</button>
-      <button type="button" onClick="updateProfile()">Update Profile</button>
+      <button type="button" (click)="updateProfile()">Update Profile</button>
     </form>
   `
 })
 export class FavoriteColorComponent {
+
+  constructor(private fb: FormBuilder) { }
+
   favoriteColorControl = new FormControl('');
-  profileForm = new FormGroup({
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
-    address: new FormGroup({
-      street: new FormControl(''),
-      city: new FormControl(''),
-      state: new FormControl(''),
-      zip: new FormControl('')
-    })
+  profileForm = this.fb.group({
+    firstName: [''],
+    lastName: [''],
+    address: this.fb.group({
+      street: [''],
+      city: [''],
+      state: [''],
+      zip: ['']
+    }),
   });
+  // profileForm = new FormGroup({
+  //   firstName: new FormControl(''),
+  //   lastName: new FormControl(''),
+  //   address: new FormGroup({
+  //     street: new FormControl(''),
+  //     city: new FormControl(''),
+  //     state: new FormControl(''),
+  //     zip: new FormControl('')
+  //   })
+  // });
   onSubmit = () => {
     console.log('this', this.profileForm.value);
   };
-  updateProfile() {
+  updateProfile =()=> {
     this.profileForm.patchValue({
       firstName: 'Nancy',
       address: {

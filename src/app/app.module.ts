@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HelloComponent } from './hello.component';
@@ -10,9 +10,10 @@ import { ExponentialStrengthPipe } from './Pipe-Custom/exponential-strength.pipe
 import { PowerBoostCalculatorComponent } from './Pipe-Custom/power-booster-calculator.component';
 import { HeroAsyncMessageComponent } from './Pipe-Custom/hero-async-message.component';
 import { AsyncObservablePipeComponent } from './Observable/aync-observable-component';
+import { FavoriteColorComponent } from './forms/forms.reactive.component';
 
 @NgModule({
-  imports: [BrowserModule, FormsModule],
+  imports: [BrowserModule, FormsModule, ReactiveFormsModule],
   declarations: [
     AppComponent,
     HelloComponent,
@@ -21,7 +22,8 @@ import { AsyncObservablePipeComponent } from './Observable/aync-observable-compo
     ExponentialStrengthPipe,
     PowerBoostCalculatorComponent,
     HeroAsyncMessageComponent,
-    AsyncObservablePipeComponent
+    AsyncObservablePipeComponent,
+    FavoriteColorComponent
   ],
   bootstrap: [AppComponent]
 })

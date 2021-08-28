@@ -21,7 +21,8 @@ Both reactive and template-driven forms are built on the following base classes.
 
   */
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup,FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-reactive-favorite-color',
@@ -52,16 +53,27 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
       </div>
       <button type="submit" [disabled]="!profileForm.valid">Submit</button>
       <button type="button" (click)="updateProfile()">Update Profile</button>
+      <p>Form Status: {{ profileForm.status }}</p>
+
+      <div formArrayName="aliases">
+  <h2>Aliases</h2>
+  <button (click)="addAlias()">+ Add another alias</button>
+
+  <div *ngFor="let alias of aliases.controls; let i=index">
+    <!-- The repeated alias template -->
+    <label for="alias-{{ i }}">Alias:</label>
+    <input id="alias-{{ i }}" type="text" [formControlName]="i">
+  </div>
+</div>
     </form>
   `
 })
 export class FavoriteColorComponent {
-
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder) {}
 
   favoriteColorControl = new FormControl('');
   profileForm = this.fb.group({
-    firstName: [''],
+    firstName: ['', Validators.required],
     lastName: [''],
     address: this.fb.group({
       street: [''],
@@ -69,6 +81,9 @@ export class FavoriteColorComponent {
       state: [''],
       zip: ['']
     }),
+    aliases: this.fb.array([
+      this.fb.control('')
+    ])
   });
   // profileForm = new FormGroup({
   //   firstName: new FormControl(''),
@@ -80,15 +95,22 @@ export class FavoriteColorComponent {
   //     zip: new FormControl('')
   //   })
   // });
+  get aliases() {
+    return this.profileForm.get('aliases') as FormArray;
+  }
+  addAlias() {
+    this.aliases.push(this.fb.control(''));
+  }
+
   onSubmit = () => {
     console.log('this', this.profileForm.value);
   };
-  updateProfile =()=> {
+  updateProfile = () => {
     this.profileForm.patchValue({
       firstName: 'Nancy',
       address: {
         street: '123 Drew Street'
       }
     });
-  }
+  };
 }

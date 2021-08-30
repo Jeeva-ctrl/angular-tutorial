@@ -29,6 +29,10 @@ import { FormBuilder, FormControl, FormGroup,FormArray } from '@angular/forms';
   template: `
     Favorite Color: <input type="text" [formControl]="favoriteColorControl" />
     <div>{{ favoriteColorControl.value }}</div>
+
+    ===============================================================================
+
+    
     <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
       <label for="first-name">First Name: </label>
       <input id="first-name" type="text" formControlName="firstName" />

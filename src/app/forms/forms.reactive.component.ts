@@ -22,8 +22,37 @@ Both reactive and template-driven forms are built on the following base classes.
   */
 import { Component } from '@angular/core';
 import { Validators } from '@angular/forms';
-import { FormBuilder, FormControl, FormGroup,FormArray } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormArray } from '@angular/forms';
 
+/*
+
+FormControl - 
+
+Tracks the value and validation status of an individual form control.
+
+This is one of the three fundamental building blocks of Angular forms, along with FormGroup and FormArray. It extends the AbstractControl class that implements most of the base functionality for accessing the value, validation status, user interactions and events
+
+*/
+
+/* 
+  Form Group - 
+
+  Tracks the value and validity state of a group of FormControl instances.
+
+A FormGroup aggregates the values of each child FormControl into one object, with each control name as the key. It calculates its status by reducing the status values of its children. For example, if one of the controls in a group is invalid, the entire group becomes invalid.
+
+*/
+
+/* 
+
+ Form Array  - 
+
+
+ Tracks the value and validity state of an array of FormControl, FormGroup or FormArray instances.
+
+A FormArray aggregates the values of each child FormControl into an array. It calculates its status by reducing the status values of its children.
+
+ */
 @Component({
   selector: 'app-reactive-favorite-color',
   template: `
@@ -32,7 +61,6 @@ import { FormBuilder, FormControl, FormGroup,FormArray } from '@angular/forms';
 
     ===============================================================================
 
-    
     <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
       <label for="first-name">First Name: </label>
       <input id="first-name" type="text" formControlName="firstName" />
@@ -40,7 +68,7 @@ import { FormBuilder, FormControl, FormGroup,FormArray } from '@angular/forms';
       <label for="last-name">Last Name: </label>
       <input id="last-name" type="text" formControlName="lastName" />
 
-      <div formGroupName="address">
+      <div 12ess">
         <h2>Address</h2>
 
         <label for="street">Street: </label>
@@ -60,15 +88,15 @@ import { FormBuilder, FormControl, FormGroup,FormArray } from '@angular/forms';
       <p>Form Status: {{ profileForm.status }}</p>
 
       <div formArrayName="aliases">
-  <h2>Aliases</h2>
-  <button (click)="addAlias()">+ Add another alias</button>
+        <h2>Aliases</h2>
+        <button (click)="addAlias()">+ Add another alias</button>
 
-  <div *ngFor="let alias of aliases.controls; let i=index">
-    <!-- The repeated alias template -->
-    <label for="alias-{{ i }}">Alias:</label>
-    <input id="alias-{{ i }}" type="text" [formControlName]="i">
-  </div>
-</div>
+        <div *ngFor="let alias of aliases.controls; let i = index">
+          <!-- The repeated alias template -->
+          <label for="alias-{{ i }}">Alias:</label>
+          <input id="alias-{{ i }}" type="text" [formControlName]="i" />
+        </div>
+      </div>
     </form>
   `
 })
@@ -85,9 +113,7 @@ export class FavoriteColorComponent {
       state: [''],
       zip: ['']
     }),
-    aliases: this.fb.array([
-      this.fb.control('')
-    ])
+    aliases: this.fb.array([this.fb.control('')])
   });
   // profileForm = new FormGroup({
   //   firstName: new FormControl(''),

@@ -68,7 +68,7 @@ A FormArray aggregates the values of each child FormControl into an array. It ca
       <label for="last-name">Last Name: </label>
       <input id="last-name" type="text" formControlName="lastName" />
 
-      <div 12ess">
+      <div>
         <h2>Address</h2>
 
         <label for="street">Street: </label>
